@@ -58,6 +58,7 @@ interface HeaderProps {
   setCodeConverting: (val: any) => void;
   setCodeImproving: (val: any) => void;
   setCodeOutput: (val: any) => void;
+  input: string;
 }
 
 const Header: React.FunctionComponent<HeaderProps> = ({
@@ -72,6 +73,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   setCodeConverting,
   setCodeImproving,
   setCodeOutput,
+  input,
 }) => {
   const themes = [
     abcdef,
@@ -145,12 +147,12 @@ const Header: React.FunctionComponent<HeaderProps> = ({
     setOutput("");
     setImprovedCode("");
     setSuggestion("");
-    setCodeOutput(true);
-    setCodeImproving(true);
-    if (!value) {
+    if (!value.trim()) {
       return;
     }
-    const res = executeCode(value, language);
+    setCodeOutput(true);
+    setCodeImproving(true);
+    const res = executeCode(value, input, language);
     res
       .then((val) => {
         setOutput(val);

@@ -11,6 +11,7 @@ import striptags from "striptags";
 import he from "he";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "components/Footer";
 
 const Home = () => {
   const [language, setLanguage] = useState("python");
@@ -22,6 +23,7 @@ const Home = () => {
   const [codeOutput, setCodeOutput] = useState(false);
   const [improvedCode, setImprovedCode] = useState<any>("");
   const [suggestion, setSuggestion] = useState<any>("");
+  const [input, setInput] = useState("");
 
   const copyToClipboard = (text: string) => {
     const t = markdownToPlainText(text);
@@ -58,34 +60,49 @@ const Home = () => {
         </div>
       </div>
       <div className="parent-ctn">
-        <div className="container">
-          <div className="code-box">
-            <span className="code-symbol1">&lt;</span>
-            <span className="code-symbol2">/</span>
-            <span className="code-symbol3">&gt;</span>
+        <div className="pt-ctn">
+          <div className="container">
+            <div className="code-box">
+              <span className="code-symbol1">&lt;</span>
+              <span className="code-symbol2">/</span>
+              <span className="code-symbol3">&gt;</span>
+            </div>
+            <Header
+              setLanguage={setLanguage}
+              language={language}
+              setThemeVal={setThemeVal}
+              value={value}
+              setValue={setValue}
+              setOutput={setOutput}
+              setImprovedCode={setImprovedCode}
+              setSuggestion={setSuggestion}
+              setCodeConverting={setCodeConverting}
+              setCodeImproving={setCodeImproving}
+              setCodeOutput={setCodeOutput}
+              input={input}
+            />
+            <Editor
+              language={language}
+              themeVal={themeVal}
+              value={value}
+              setValue={setValue}
+              loading={codeConverting}
+            />
           </div>
-          <Header
-            setLanguage={setLanguage}
-            language={language}
-            setThemeVal={setThemeVal}
-            value={value}
-            setValue={setValue}
-            setOutput={setOutput}
-            setImprovedCode={setImprovedCode}
-            setSuggestion={setSuggestion}
-            setCodeConverting={setCodeConverting}
-            setCodeImproving={setCodeImproving}
-            setCodeOutput={setCodeOutput}
-          />
-          <Editor
-            language={language}
-            themeVal={themeVal}
-            value={value}
-            setValue={setValue}
-            loading={codeConverting}
-          />
+          {suggestion && (
+            <div className="container1">
+              <ReactMarkdown className="suggestion">{suggestion}</ReactMarkdown>
+            </div>
+          )}
         </div>
         <div className="output-improved-ctn">
+          <div className="container1">
+            <div className="output-text">Input</div>
+            <textarea
+              onChange={(e) => setInput(e.target.value)}
+              className="input-box"
+            />
+          </div>
           <div className="container1">
             <div className="output-text">Output</div>
             <Output
@@ -113,12 +130,8 @@ const Home = () => {
             />
           </div>
         </div>
-        {suggestion && (
-          <div className="container1 m-50">
-            <ReactMarkdown className="suggestion">{suggestion}</ReactMarkdown>
-          </div>
-        )}
       </div>
+      <Footer />
     </StyledHome>
   );
 };

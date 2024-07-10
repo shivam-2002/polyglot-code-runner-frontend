@@ -2,10 +2,11 @@ import axios from "axios";
 
 const BACKEND_BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL || "";
 
-export const executeCode = async (value, language) => {
+export const executeCode = async (value, input, language) => {
   try {
     const res = await axios.post(BACKEND_BASE_URL + "/api/v1/execute-code", {
       code: value,
+      inputVal: input,
       language: language,
     });
     if (res && res.data && res.data.status_code === 200) return res.data.data;

@@ -49,9 +49,9 @@ const StyledHome = styled.div`
   .parent-ctn {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 50px;
     flex-wrap: wrap;
+    margin-bottom: 50px;
   }
 
   .container {
@@ -155,6 +155,24 @@ const StyledHome = styled.div`
 
   .m-50 {
     margin-bottom: 50px;
+  }
+
+  .input-box {
+    width: 98%;
+    resize: none;
+    box-shadow: none;
+    outline: none;
+    height: 100px;
+    overflow-y: auto;
+    word-wrap: wrap;
+  }
+
+  .pt-ctn {
+    width: 610px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 `;
 
