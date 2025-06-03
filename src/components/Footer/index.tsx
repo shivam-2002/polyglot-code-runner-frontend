@@ -8,7 +8,7 @@ const Footer = () => {
       <div>
         &copy; {new Date().getFullYear()}{" "}
         <a
-          href="https://portfolio.shivamtech.xyz/"
+          href="https://portfolio.shivam-tech.in/"
           target="_blank"
           rel="noopener"
         >
