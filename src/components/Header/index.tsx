@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import StyledHeader from "./styled";
 import resetImg from "assets/reset.png";
 import { marked } from "marked";
@@ -195,14 +195,13 @@ const Header: React.FunctionComponent<HeaderProps> = ({
     setLanguage(e.target.value);
   };
 
-  const [displayResetText, setDisplayResetText] = useState(false);
-
   return (
     <StyledHeader>
       <select
         onChange={handleLanguageChange}
         className="drop-down"
-        defaultValue={"python"}
+        value={language}
+        aria-label="Programming language"
       >
         <option value="python">Python</option>
         <option value="c">C</option>
@@ -215,6 +214,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
       <select
         onChange={(e) => setThemeVal(themes[parseInt(e.target.value)])}
         className="drop-down1"
+        aria-label="Editor theme"
       >
         {themesStr.map((val, ind) => (
           <option key={ind} value={ind}>
@@ -223,21 +223,24 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         ))}
       </select>
 
-      <div className="reset-ctn">
+      <button
+        type="button"
+        className="reset-ctn"
+        onClick={() => setValue("")}
+        aria-label="Reset code"
+        title="Reset code"
+      >
         <img
           src={resetImg}
-          alt="Reset"
+          alt=""
           className="reset"
-          onMouseEnter={() => setDisplayResetText(true)}
-          onMouseLeave={() => setDisplayResetText(false)}
-          onClick={() => setValue("")}
         />
-        {displayResetText && <div className="reset-text">Reset Code</div>}
-      </div>
+      </button>
 
-      <div onClick={handleRun} className="run-btn">
-        Run
-      </div>
+      <button type="button" onClick={handleRun} className="run-btn">
+        <span className="run-icon">▶</span>
+        Run code
+      </button>
     </StyledHeader>
   );
 };

@@ -1,21 +1,30 @@
 import styled from "styled-components";
 
-const StyledFooter = styled.div`
+const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 16px;
+  min-height: 62px;
+  padding: 12px 20px;
+  color: #718099;
+  border-top: 1px solid rgba(157, 177, 211, 0.1);
+  font-size: 11px;
 
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #f8f9fa;
-  padding: 10px 0px;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  a {
+    color: #a6b3c9;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #a3e635;
+  }
 
   .icon {
-    width: 25px;
-    height: 25px;
+    display: block;
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
   }
 `;
 

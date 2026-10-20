@@ -55,8 +55,8 @@ const Editor: React.FunctionComponent<EditorProps> = ({
     <StyledEditor>
       <CodeMirror
         value={value}
-        height="620px"
-        width="600px"
+        height="540px"
+        width="100%"
         extensions={[langExt]}
         onChange={onChange}
         theme={themeVal}
