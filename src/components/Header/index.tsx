@@ -186,13 +186,15 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   };
 
   const handleLanguageChange = async (e: any) => {
+    const targetLanguage = e.currentTarget.value;
+    setLanguage(targetLanguage);
+
     if (value) {
       setCodeConverting(true);
-      const res = await convertCode(value, e.target.value, language);
+      const res = await convertCode(value, targetLanguage, language);
       setValue(markdownToPlainText(res));
       setCodeConverting(false);
     }
-    setLanguage(e.target.value);
   };
 
   return (
